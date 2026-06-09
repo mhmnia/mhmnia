@@ -1,73 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Under Construction</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body, html {
-            height: 100%;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-        }
-        .background-image {
-            background-image: url('https://i.ibb.co/0jSFDxv/222.webp'); 
-            background-size: cover;
-            background-position: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-            z-index: -1;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        .footer a {
-            color: #00e7ff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mohammadhossein Mohammadnia — Earth Scientist</title>
+<meta name="description" content="Mohammadhossein Mohammadnia — PhD researcher in Earth Sciences at the University of Hong Kong, working on InSAR, volcano deformation, and geophysical modeling." />
+
+<!-- Fonts: Fraunces (display serif) + Manrope (sans) + JetBrains Mono (accents) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-soft: #f3efe6;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #888279;
+    --rule: #d9d3c5;
+    --ember: #c2410c;       /* volcanic accent */
+    --ember-soft: #e2734a;
+    --paper: #ffffff;
+    --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Subtle grain texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─────── NAVIGATION ─────── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 248, 243, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+  }
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  nav .brand {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  nav .brand span { color: var(--ember); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+  }
+  nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+  nav a:hover { color: var(--ember); }
+
+  /* ─────── HERO ─────── */
+  header.hero {
+    padding: 110px 0 80px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  @media (min-width: 820px) {
+    .hero-grid { grid-template-columns: 1.5fr 1fr; gap: 64px; }
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ember);
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--ember);
+  }
+  h1.name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+  }
+  h1.name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ember);
+  }
+  .tagline {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 540px;
+  }
+  .hero-meta {
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .hero-meta dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+    margin-top: 16px;
+  }
+  .hero-meta dt:first-child { margin-top: 0; }
+  .hero-meta dd { margin-bottom: 4px; }
+  .hero-meta a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+  .hero-meta a:hover { border-color: var(--ember); }
+
+  /* ─────── SECTIONS ─────── */
+  section {
+    padding: 90px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 720px;
+  }
+  h2 em { font-style: italic; color: var(--ember); font-weight: 300; }
+
+  /* ─────── ABOUT ─────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  @media (min-width: 820px) {
+    .about-grid { grid-template-columns: 2fr 1fr; gap: 80px; }
+  }
+  .about p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    max-width: 620px;
+  }
+  .about p strong { color: var(--ink); font-weight: 500; }
+
+  .interests {
+    background: var(--bg-soft);
+    padding: 32px 28px;
+    border: 1px solid var(--rule);
+  }
+  .interests h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ember);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .interests ul { list-style: none; }
+  .interests li {
+    font-size: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .interests li:last-child { border-bottom: none; }
+  .interests li::before {
+    content: "→";
+    color: var(--ember);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  /* ─────── EDUCATION / TIMELINE ─────── */
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+  .timeline-body h4 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .timeline-body p {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .timeline-body p em { color: var(--ember); font-style: italic; }
+
+  /* ─────── PUBLICATIONS ─────── */
+  .pub-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .pub {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 36px 36px 32px;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .pub:hover {
+    border-color: var(--ember);
+    transform: translateY(-2px);
+  }
+  .pub-number {
+    position: absolute;
+    top: 28px;
+    right: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+  .pub-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ember);
+    margin-bottom: 14px;
+  }
+  .pub-meta .dot { color: var(--ink-faint); margin: 0 8px; }
+  .pub h3 {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+    max-width: 720px;
+  }
+  .pub .authors {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .pub .authors strong {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 600;
+    border-bottom: 1px solid var(--ember);
+  }
+  .pub .summary {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 720px;
+  }
+  .pub-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px dashed var(--rule);
+  }
+  .pub-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    background: var(--bg-soft);
+    padding: 5px 10px;
+    border: 1px solid var(--rule);
+  }
+  .pub-link {
+    margin-left: auto;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ember);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease;
+  }
+  .pub-link:hover { gap: 12px; }
+  .pub-link::after { content: "↗"; font-family: var(--mono); }
+  .pub-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: var(--ember);
+    color: var(--bg);
+    padding: 4px 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ─────── SKILLS ─────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 720px) {
+    .skills-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .skill-block h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ember);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 500;
+  }
+  .skill-block ul { list-style: none; }
+  .skill-block li {
+    font-size: 14px;
+    padding: 6px 0;
+    color: var(--ink-soft);
+  }
+
+  /* ─────── CONTACT / FOOTER ─────── */
+  .contact {
+    padding: 100px 0;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+  .contact .eyebrow {
+    justify-content: center;
+    display: flex;
+  }
+  .contact h2 {
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+  .contact-email {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 36px);
+    font-style: italic;
+    color: var(--ember);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ember);
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  .contact-email:hover { opacity: 0.7; }
+  .contact-links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .contact-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid var(--rule);
+    transition: all 0.2s ease;
+  }
+  .contact-links a:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+  }
+
+  footer {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ─────── ANIMATIONS ─────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .reveal:nth-child(1) { animation-delay: 0.05s; }
+  .reveal:nth-child(2) { animation-delay: 0.15s; }
+  .reveal:nth-child(3) { animation-delay: 0.25s; }
+  .reveal:nth-child(4) { animation-delay: 0.35s; }
+
+  /* mobile niceties */
+  @media (max-width: 600px) {
+    nav ul { gap: 16px; }
+    nav a { font-size: 13px; }
+    .container { padding: 0 22px; }
+    header.hero { padding: 70px 0 50px; }
+    section { padding: 60px 0; }
+    .pub { padding: 28px 24px; }
+    .pub-number { top: 20px; right: 24px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>
 </head>
 <body>
-    <div class="background-image"></div>
-    <div class="container">
-        <h1>Page Under Construction</h1>
-        <p>This page is currently under construction and will be available soon.</p>
-        <div class="footer">
-            <p>Mohammadhossein Mohammadnia</p>
-            <p>Email: <a href="mailto:mhmnia@connect.hku.hk">mhmnia@connect.hku.hk</a></p>
-        </div>
+
+<!-- ─────────── NAV ─────────── -->
+<nav>
+  <div class="container">
+    <div class="brand">M. <span>Mohammadnia</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─────────── HERO ─────────── -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal">PhD Researcher · Earth Sciences</div>
+        <h1 class="name reveal">Mohammadhossein<br><em>Mohammadnia</em></h1>
+        <p class="tagline reveal">Watching the Earth breathe — using satellite radar to measure how volcanoes, salt, and the ground beneath us move, millimeter by millimeter.</p>
+      </div>
+      <dl class="hero-meta reveal">
+        <dt>Affiliation</dt>
+        <dd>The University of Hong Kong</dd>
+        <dd>Department of Earth Sciences</dd>
+        <dt>Field</dt>
+        <dd>InSAR · Volcano Geodesy</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:mhmnia@connect.hku.hk">mhmnia@connect.hku.hk</a></dd>
+        <dt>Profiles</dt>
+        <dd>
+          <a href="https://scholar.google.com/citations?user=CLB8v-cAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a> ·
+          <a href="https://www.researchgate.net/profile/Mohammadhosein-Mohammadnia" target="_blank" rel="noopener">ResearchGate</a> ·
+          <a href="https://github.com/mohammadnia11" target="_blank" rel="noopener">GitHub</a>
+        </dd>
+      </dl>
     </div>
+  </div>
+</header>
+
+<!-- ─────────── ABOUT ─────────── -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">§ 01 — About</div>
+    <h2>A geophysicist working at the intersection of <em>satellite remote sensing</em> and <em>volcanology</em>.</h2>
+
+    <div class="about-grid">
+      <div class="about">
+        <p>I am a PhD researcher at the <strong>University of Hong Kong</strong>, advised by Dr. Pablo J. González (CSIC, Spain) and Prof. Alex Webb (FU Berlin). My research uses <strong>Interferometric Synthetic Aperture Radar (InSAR)</strong> to detect, quantify, and interpret subtle ground deformation — from awakening volcanoes to creeping salt diapirs.</p>
+
+        <p>I develop new processing methods to push InSAR sensitivity beyond conventional limits, with a particular focus on <strong>atmospheric correction</strong> for small, steep volcanic edifices where traditional techniques fall short. I combine these geodetic observations with <strong>numerical modeling</strong>, petrological constraints, and increasingly <strong>machine learning</strong>, to build a more complete picture of subsurface processes.</p>
+
+        <p>My recent work on Taftan volcano (Iran) — which uncovered the first clear unrest signal at a long-dormant volcano — received <strong>global media coverage</strong> in outlets including <em>The Independent</em>, <em>New York Post</em>, and <em>Daily Mail</em>.</p>
+      </div>
+
+      <aside class="interests">
+        <h3>Research Interests</h3>
+        <ul>
+          <li>Multi-temporal InSAR (SBAS, PS)</li>
+          <li>Volcano geodesy &amp; unrest detection</li>
+          <li>Atmospheric phase correction</li>
+          <li>Geophysical numerical modeling</li>
+          <li>Salt tectonics &amp; diapirism</li>
+          <li>Machine learning for Earth obs.</li>
+          <li>Pixel offset tracking</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── EDUCATION / RESEARCH ─────────── -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">§ 02 — Trajectory</div>
+    <h2>Education and <em>research positions</em>.</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2022 — 2026</div>
+        <div class="timeline-body">
+          <h4>PhD, Earth Sciences</h4>
+          <p>The University of Hong Kong &nbsp;·&nbsp; <em>HKU Postgraduate Scholarship</em></p>
+          <p>Advisors: Dr. Pablo J. González (CSIC) &amp; Prof. Alex Webb (FU Berlin)</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-body">
+          <h4>Visiting Researcher</h4>
+          <p>Stockholm University &nbsp;·&nbsp; <em>Bolin Centre for Climate Research</em></p>
+          <p>Glacier dynamics in Tarfala Valley using Sentinel-1 InSAR.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2016 — 2019</div>
+        <div class="timeline-body">
+          <h4>MSc, Geophysics</h4>
+          <p>Institute for Advanced Studies in Basic Sciences (IASBS), Zanjan, Iran</p>
+          <p><em>Academic Excellence Award — Rank 1 in class</em></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2011 — 2014</div>
+        <div class="timeline-body">
+          <h4>BSc, Physics</h4>
+          <p>Shahid Madani University of Azerbaijan, Tabriz, Iran</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PUBLICATIONS ─────────── -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label">§ 03 — Selected publications</div>
+    <h2>Recent work, in <em>peer-reviewed journals</em>.</h2>
+
+    <div class="pub-grid">
+
+      <!-- Paper 1 — Taftan -->
+      <article class="pub">
+        <div class="pub-number">— 01</div>
+        <div class="pub-meta">Geophysical Research Letters <span class="dot">·</span> 2025</div>
+        <h3>Spontaneous transient summit uplift at Taftan volcano (Makran subduction arc) imaged using an InSAR common-mode filtering method <span class="pub-badge">Media</span></h3>
+        <p class="authors"><strong>M. Mohammadnia</strong>, M. W. Yip, A. A. G. Webb, P. J. González</p>
+        <p class="summary">First clear documentation of unrest at Taftan, a long-dormant volcano in southeastern Iran. Using a novel common-mode filtering technique applied to Sentinel-1 time series, we resolve a 10-month summit uplift episode (~9 cm) between July 2023 and May 2024, sourced ~500 m beneath the summit. The signal — triggerless and uncorrelated with rainfall or seismicity — points to hydrothermal pressurization, reframing Taftan as a hidden hazard along the Makran arc.</p>
+        <div class="pub-footer">
+          <span class="pub-tag">InSAR</span>
+          <span class="pub-tag">Volcano Unrest</span>
+          <span class="pub-tag">Common-Mode Filter</span>
+          <a class="pub-link" href="https://doi.org/10.1029/2025GL114853" target="_blank" rel="noopener">Read paper</a>
+        </div>
+      </article>
+
+      <!-- Paper 2 — Tibesti -->
+      <article class="pub">
+        <div class="pub-number">— 02</div>
+        <div class="pub-meta">Bulletin of Volcanology <span class="dot">·</span> 2026</div>
+        <h3>Satellite surface deformation survey reveals evidence for active magmatic processes at the Tibesti (Africa) continental intraplate volcanoes</h3>
+        <p class="authors"><strong>M. Mohammadnia</strong>, T. Boulesteix, A. A. G. Webb, P. J. González</p>
+        <p class="summary">The first satellite-based deformation survey across the Tibesti volcanic province in the central Sahara of Chad — one of Earth's least-studied intraplate magmatic systems. Sentinel-1 time series reveal persistent subsidence at the Toussidé–Yirrigué complex (−2.2 mm/yr) and Soborom geothermal field (−8.5 mm/yr), interpreted via thermodynamic and mechanical modeling as long-term cooling of mid-crustal magma reservoirs emplaced during the Holocene.</p>
+        <div class="pub-footer">
+          <span class="pub-tag">Intraplate Volcanism</span>
+          <span class="pub-tag">Africa</span>
+          <span class="pub-tag">Thermobarometry</span>
+          <a class="pub-link" href="https://doi.org/10.1007/s00445-026-01954-0" target="_blank" rel="noopener">Read paper</a>
+        </div>
+      </article>
+
+      <!-- Paper 3 — Sierra Negra -->
+      <article class="pub">
+        <div class="pub-number">— 03</div>
+        <div class="pub-meta">Geophysical Journal International <span class="dot">·</span> 2025</div>
+        <h3>Surface deformation dynamics of Sierra Negra's 2018 eruption: insights from InSAR, optical flow and pixel offset tracking</h3>
+        <p class="authors"><strong>M. Mohammadnia</strong>, S. Vajedian, Z. Mousavi, M. Aflaki</p>
+        <p class="summary">A multi-method study of the 2018 Sierra Negra eruption (Galápagos) combining InSAR, optical flow, and pixel offset tracking on consecutive 6-day Sentinel-1 pairs. The integrated workflow captures the full eruption cycle — including caldera subsidence at metric rates — and estimates an underground magma transfer rate of ~60 m/hr, consistent with seismically inferred magma migration through a sub-horizontal dike.</p>
+        <div class="pub-footer">
+          <span class="pub-tag">Eruption Dynamics</span>
+          <span class="pub-tag">Pixel Offset</span>
+          <span class="pub-tag">Optical Flow</span>
+          <a class="pub-link" href="https://doi.org/10.1093/gji/ggaf012" target="_blank" rel="noopener">Read paper</a>
+        </div>
+      </article>
+
+      <!-- Paper 4 — Salt diapirs -->
+      <article class="pub">
+        <div class="pub-number">— 04</div>
+        <div class="pub-meta">Tectonophysics <span class="dot">·</span> 2021</div>
+        <h3>InSAR constraints on the active deformation of salt diapirs in the Kalut basin, Central Iran</h3>
+        <p class="authors"><strong>M. Mohammadnia</strong>, M. Najafi, Z. Mousavi</p>
+        <p class="summary">A comprehensive InSAR study of eight salt diapirs in the Kalut basin of central Iran — one of the most active exposed diapiric systems on Earth. Vertical growth rates reach 8 mm/yr at salt stocks and large walls, with horizontal flow of 1–2 mm/yr along flanks. The work classifies diapir kinematics (stocks, walls, massifs, welds) and links rising structures to ephemeral fluvial and evaporitic depocenters accumulating up to 10 mm/yr of sediment.</p>
+        <div class="pub-footer">
+          <span class="pub-tag">Salt Tectonics</span>
+          <span class="pub-tag">SBAS</span>
+          <span class="pub-tag">Central Iran</span>
+          <a class="pub-link" href="https://doi.org/10.1016/j.tecto.2021.228860" target="_blank" rel="noopener">Read paper</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── SKILLS ─────────── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">§ 04 — Toolkit</div>
+    <h2>The instruments of <em>my craft</em>.</h2>
+
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>InSAR Software</h4>
+        <ul>
+          <li>MintPy · LiCSBAS</li>
+          <li>ISCE · StaMPS · GMTSAR</li>
+          <li>SNAP · SARscape</li>
+          <li>AMSTer · MiaplPy · Dolphin</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h4>Programming</h4>
+        <ul>
+          <li>Python (numpy, scipy, pytorch)</li>
+          <li>MATLAB</li>
+          <li>Bash / Linux scripting</li>
+          <li>Git &amp; collaborative dev</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h4>Geospatial &amp; Modeling</h4>
+        <ul>
+          <li>Generic Mapping Tools (GMT)</li>
+          <li>ArcGIS · QGIS · Global Mapper</li>
+          <li>Mogi / Yang / Bayesian inversion</li>
+          <li>Machine &amp; Deep Learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CONTACT ─────────── -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="eyebrow">Get in touch</div>
+    <h2>I'm always glad to discuss <em>collaborations</em>, research, or new ideas.</h2>
+    <a class="contact-email" href="mailto:mhmnia@connect.hku.hk">mhmnia@connect.hku.hk</a>
+    <div class="contact-links">
+      <a href="https://scholar.google.com/citations?user=CLB8v-cAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://www.researchgate.net/profile/Mohammadhosein-Mohammadnia" target="_blank" rel="noopener">ResearchGate</a>
+      <a href="https://github.com/mohammadnia11" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://twitter.com/nirvana2462" target="_blank" rel="noopener">Twitter / X</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span>© 2026 Mohammadhossein Mohammadnia</span>
+    <span>Hong Kong · Built with care</span>
+  </div>
+</footer>
+
 </body>
 </html>
